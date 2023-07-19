@@ -1,0 +1,104 @@
+<!-- emmet: 키워드로 html 구조 잡아주는 것 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tag 종류</title>
+</head>
+<body>
+    <h1>Tag 종류에 대해 배워보자!</h1>
+    <h2>제목2</h2>
+    <h3>제목3</h3>
+    <h4>제목4</h4>
+    <h5>제목5</h5>
+    <h6>제목6</h6>
+    <p>여기는 본문 태그입니다!</p> <!--쓰고싶은 내용 주로 쓰면 됨-->
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <p>안녕하세요</p>
+
+    <h3>오늘의 할일</h3>
+    <!-- ul tag type attribute: disc(default), square, circle, none -->
+    <ul type="square">
+        <li>html 공부하기</li>
+        <li>운동하기</li>
+        <li>방 청소하기</li>
+    </ul>
+
+    <h3>아이스 카페라떼 레시피</h3>
+    <!-- ol tag type attribute: 1(def), a, A, i, I  -->
+    <!-- start attr: 시작 번호, reverse: 역순으로 -->
+    <ol type="1" start="7" reversed>
+        <li><strong>우유</strong>를 <em>180ml</em> 컵에 넣기</li>
+        <li ><b>얼음</b>을 가득 넣기</li>
+        <li><i>에스프레소 샷</i>을 넣어주면</li>
+        <li>완성</li>
+    </ol>
+
+    <!-- 수평줄 태그 -->
+    <hr>
+
+    <!-- 목록 태그의 중첩 사용 -->
+    <h3>내가 좋아하는 음식</h3>
+    <ul>
+        <li>
+            양식
+            <ul>
+                <li>수제버거</li>
+                <li>파스타</li>
+            </ul>
+        </li>
+        <li>
+            한식
+            <ul>
+                <li>된장찌개</li>
+                <li>청국장</li>
+            </ul>
+        </li>
+        <li>
+            일식
+            <ul>
+                <li>초밥</li>
+                <li>우동</li>
+            </ul>
+        </li>
+    </ul>
+
+    <hr>
+
+    <h1>Img & a tag</h1>
+    <!-- 상대경로/절대경로 -->
+    <!--
+    상대경로는 파일에 따라 접근하는 경로가 달라서 따로 설정해야함.
+    절대경로: root부터 시작하는 경로.
+    사용자 이름에 따라 충돌이 일어날 수 있으므로 상대경로를 사용하는게 작업성에 좋다! 현재 위치로부터 이미지 파일을 찾아가므로!!
+    -->
+    <!--
+        . : 현재
+        .. : 부모
+    -->
+    <!-- 상대경로로 이미지 위치 찾기 -->
+    <img src="./Img/licensed-image.jpeg" alt="강아지 사진" width="500">
+    <!-- 절대경로로 이미지 위치 찾기 -->
+    <img src="/Users/user/Desktop/sesac-ydp-5/02-html/Img/licensed-image.jpeg" alt="강아지 사진" width="500">
+    <!-- 인터넷 주소로 이미지 경로 설정 -->
+    <img src="https://cdn.travie.com/news/photo/first/201710/img_19975_1.jpg" alt="" width="500">
+    <br>
+    <hr>
+    <!-- 
+        a tag target attribute: 링크가 열릴 위치 지정
+        - _self (default): 현재 탭에서 열기
+        - _blank : 새로운 탭에서 열기
+    -->
+    <a href="https://www.naver.com/" target="_self">Naver로 이동하기</a>
+    <a href="https://www.naver.com/" target="_blank">Naver로 이동하기</a>
+    <a href="https://www.google.com" target="_blank" title="마우스 커서를 올리면 나타남!">Google로 이동하기 (_blank)</a>
+
+    <!-- a 태그는 인터넷상의 주소 뿐만 아니라 폴더 내의 다른 html 문서로도 이동 가능! -->
+    <a href="./html-start.html" target="_blank">html-start 파일로 이동하기</a>
+</body>
+</html>
