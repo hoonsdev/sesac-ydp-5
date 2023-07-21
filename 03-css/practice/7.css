@@ -1,0 +1,28 @@
+body {
+  position: relative;
+  margin: 100px;
+}
+
+img {
+  width: 400px;
+  height: 300px;
+  position: absolute;
+  transform: skewY(30deg);
+}
+
+.img1 {
+  z-index: 10;
+  top: 200px;
+}
+
+.img2 {
+  z-index: 8;
+  top: 150px;
+  left: 200px;
+}
+
+.img3 {
+  z-index: 6;
+  top: 100px;
+  left: 400px;
+}

@@ -1,0 +1,35 @@
+/* 전체 선택자 */
+* {
+    color: navy;
+}
+
+/* 태그명: 태그 선택자 */
+h1 {
+    background-color: pink;
+}
+
+/* .클래스명: 클래스 선택자 */
+.second {
+    background-color: aquamarine;
+}
+
+.small {
+    font-size: 10px;
+}
+
+.big {
+    font-size: 20px;
+}
+
+/* #아이디명: 아이디 선택자 */
+#first {
+    background-color: lightgreen;
+}
+
+/* 
+    class 와 id 차이
+    - class: 그룹
+    - id: 고유
+    
+    여러 요소에 같은 속성을 부여하고 싶을 때 class 사용하면 편하다!
+*/

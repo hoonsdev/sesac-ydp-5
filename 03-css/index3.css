@@ -1,0 +1,49 @@
+/* 하위(후손) 선택자 */
+body section {
+  border: 1px solid blue;
+}
+
+body section h2 {
+  border: 1px solid green;
+}
+
+/* 자식 선택자: > */
+.first > h2 {
+  color: white;
+  background-color: navy;
+}
+
+.second > h2 {
+  color: navy;
+  background-color: #ffffff;
+}
+
+/* 인접 형제 선택자: + */
+/* 주의) kong 이라는 아이디를 갖는 요소 바로 뒤에
+li 태그가 있어야만 적용 가능! */
+#kong + li {
+  background-color: aqua;
+}
+
+/* 일반 형제 선택자: ~ */
+/* 뒤에만 위치하면 되기 때문에
+바로 뒤에 위치하고 있지 않아도 괜찮음! */
+#kong ~ li {
+  /* color: red; */
+  /* color: #ff0000; */
+  color: rgb(255, 0, 0);
+}
+
+/* CSS 색상 */
+/* 
+1. 색상 키워드: red, blue, green, ...
+
+2. 16진수 코드( #xx(red)xx(green)xx(blue) )
+0 ~ 9, a, b, c, d, e, f: 16개의 기호로 표현
+- #ffffff: ff ff ff -> white
+- #000000: 00 00 00 -> black
+
+3. rgb(0~255, 0~255, 0~255)
+- rgb(255, 255, 255): white
+- rgb(0, 0, 0): black
+*/
