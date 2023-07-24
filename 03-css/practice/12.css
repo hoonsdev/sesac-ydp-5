@@ -1,0 +1,19 @@
+.text {
+  font-size: 30px;
+  
+  animation-name: textmove;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+
+}
+
+@keyframes textmove {
+  0% {
+    margin-left: 100%;
+    width: 200%;
+  }
+  100% {
+    margin-left: 0;
+    width: 100%;
+  }
+}
