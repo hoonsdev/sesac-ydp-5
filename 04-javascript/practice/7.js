@@ -5,7 +5,7 @@ for (i = 0; i <= 10000; i++) {
   }
 }
 
-// 프로그램
+// prompt를 이용한 숫자 찾기 프로그램
 const num = Number(prompt('숫자를 입력해주세요!'));
 
 const targetNum = (num2) => {
