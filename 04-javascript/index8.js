@@ -91,3 +91,93 @@ console.log(arr2.join('-'));
 console.log('hello'.split(''));
 console.log('hello'.split('').reverse());
 console.log('hello'.split('').reverse().join(''));
+
+/////////////////////////////////
+// 배열에서 반복문 사용하기!
+// - 기본 for 문
+// - for of 문
+// - forEach() 메서드
+
+const arr3 = [1, 2, 5, 6, 7];
+const alphabets = ['a', 'b', 'c', 'd'];
+
+for (let a = 0; a < arr3.length; a++) {
+  console.log(arr3[a]);
+}
+
+for (let alpha of alphabets) {
+  console.log(alpha);
+}
+
+alphabets.forEach(function (alpha, idx, arr) {
+  // alpha: currentValue를 의미, 반복하고 있는 현재 요소
+  // idx: currentValue의 인덱스(위치)
+  // arr: forEach를 호출한 배열
+  console.log(alpha, idx, arr);
+});
+
+// 배열의 합 구하기
+let numbers = [1, 2, 3, 4, 5, 6];
+var sum1 = 0;
+var sum2 = 0;
+var sum3 = 0;
+
+for (let i = 0; i < numbers.length; i++) {
+  sum1 += numbers[i];
+}
+console.log(sum1);
+
+for (let num of numbers) {
+  sum2 += num;
+}
+console.log(sum2);
+
+numbers.forEach((num) => {
+  sum3 += num;
+});
+console.log(sum3);
+
+console.log('-------------------------');
+
+// map, filter, find 메서드
+const arr4 = [1, 2, 3, 4, 5];
+
+// map(): 배열 내 모든 원소에 대해 연산한 결과를 모아 "새로운 배열" 반환
+// forEach 는 단순 반복을 하게 해주는 기능이고, map 메서드는 반복 후 새로운 배열을 반환한다! 차이점..
+// const mapResult = arr4.map(function (e) {
+//   return e * 2;
+// });
+// console.log(mapResult);
+const mapResult = arr4.map((e) => e * 2);
+console.log(mapResult);
+
+// filter(): 주어진 함수의 테스트(조건)을 통과하는 요소를 모아
+// (조건을 통과하면 요소 유지, 미통과하면 요소 버림) "새로운 배열 반환"
+// const filterResult = arr4.filter(function (e) {
+//   return e > 2;
+// });
+const filterResult = arr4.filter((e) => e > 2);
+console.log(filterResult);
+
+// find(): 특정 조건을 만족하는 첫번째 요소 반환
+// 조건 만족하는 값이 없으면 undefined 반환
+const findResult = arr4.find((e) => e > 2);
+console.log(findResult);
+
+console.log('-------------');
+
+// 퀴즈
+// ~~.filter(() => {}) 여기서 return 써주지 않으면 무조건 {} 생략해야 오류가 안난다! 실수 주의
+const words = ['dog', 'cat', 'rabbit', 'apple', 'wow'];
+
+// 1. 글자 수가 3개 초과인 단어만 필터링
+const result1 = words.filter((word) => word.length > 3);
+console.log(result1);
+
+// 2. 글자에 'a' 문자가 포함되어 있는 단어만 필터링
+// 'str'.includes(): true, false 반환 메서드
+// .filter(): true를 반환하면 해당 요소 유지, false를 반환하면 해당 요소 버림
+// 즉, 요소들의 값이 새로운 배열로 생성되어 반환!
+// .map(): inclues 메서드를 통해 반환된 t/f 값을 새로운 배열로 생성하여 반환
+const result2 = words.filter((word) => word.includes('a'));
+console.log(result2);
