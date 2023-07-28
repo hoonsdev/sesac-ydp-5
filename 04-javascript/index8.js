@@ -178,6 +178,6 @@ console.log(result1);
 // 'str'.includes(): true, false 반환 메서드
 // .filter(): true를 반환하면 해당 요소 유지, false를 반환하면 해당 요소 버림
 // 즉, 요소들의 값이 새로운 배열로 생성되어 반환!
-// .map(): inclues 메서드를 통해 반환된 t/f 값을 새로운 배열로 생성하여 반환
+// .map(): includes 메서드를 통해 반환된 t/f 값을 새로운 배열로 생성하여 반환
 const result2 = words.filter((word) => word.includes('a'));
 console.log(result2);
