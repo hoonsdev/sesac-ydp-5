@@ -181,3 +181,14 @@ console.log(result1);
 // .map(): includes 메서드를 통해 반환된 t/f 값을 새로운 배열로 생성하여 반환
 const result2 = words.filter((word) => word.includes('a'));
 console.log(result2);
+
+///////////////////////////////////////
+// for in 반복문
+// 객체의 key를 반복할 수 있는 구문
+
+const me = { name: 'taehoon', gender: 'm', hobby: 'tv' };
+for (let key in me) {
+  console.log(key, me[key]);
+  // key: key
+  // value: me[key]
+}
