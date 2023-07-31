@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap Icon</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+    <!-- Bootstrap CDN (css) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <!-- Bootstrap CDN (js) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <h1>Bootstrap Icon</h1>
+
+    <h2>i 태그로 적용하는 방법</h2>
+    <i class="bi bi-whatsapp" style="color: blue"></i>
+
+    <h2>svg 태그로 적용하는 방법</h2>
+    <!-- svg: 크기 조정이 가능한 벡터 그래픽, w, h 조정 가능, fill 색상변경 가능
+        - svg 태그에 width, height 속성을 1em으로 설정하면 부모 요소 크기에 맞게 변경
+    -->
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="50"
+      height="50"
+      fill="royalblue"
+      class="bi bi-cloudy-fill"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M13.405 7.027a5.001 5.001 0 0 0-9.499-1.004A3.5 3.5 0 1 0 3.5 13H13a3 3 0 0 0 .405-5.973z"
+      />
+    </svg>
+
+    <h2>Icon 사용 예시</h2>
+    <!-- bi-heart: 빈하트, bi-heart-fill: 꽉찬 하트 -->
+    <i
+      class="bi bi-heart heart_icon"
+      style="font-size: 100px; color: red; cursor: pointer"
+    ></i>
+    <!-- <i class="bi bi-heart-fill"></i> -->
+
+    <script>
+      const heartIcon = document.querySelector('.heart_icon');
+      heartIcon.addEventListener('click', () => {
+        heartIcon.classList.toggle('bi-heart');
+        heartIcon.classList.toggle('bi-heart-fill');
+      });
+    </script>
+  </body>
+</html>
