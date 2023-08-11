@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>로그인 페이지</title>
+    <%- include('./includes/head.ejs', {title: '로그인'}) %>
     <style>
       body {
         display: flex;
@@ -42,6 +42,7 @@
     </style>
   </head>
   <body>
+    <%- include('./includes/header.ejs') %>
     <div class="container">
       <h1>로그인 해주세요</h1>
       <div class="center">
@@ -54,7 +55,8 @@
         <button>login</button>
       </div>
       <div>
-        <a href="/register"> 회원가입 </a>
+        <button><a href="/register"> 회원가입 </a></button>
+        <button><a href="/"> 메인 페이지로 돌아가기 </a></button>
       </div>
     </div>
   </body>
