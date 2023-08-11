@@ -3,7 +3,12 @@ const app = express();
 const PORT = 8080;
 
 app.set('view engine', 'ejs'); // express에서 사용할 템플릿 엔진 종류 등록
-app.set('views', './views'); // 템플릿 엔진 파일을 저장할 위치 등록
+// app.set('views', './views'); // 템플릿 엔진 파일을 저장할 위치 등록
+// static 미들웨어 등록
+// app.use('웹에서 설정하고자 하는 루트 경로', express.static(__dirname + '폴더 이름(/폴더)'))
+// localhost:8080/image/pooh.jpeg 이렇게 경로 접근 가능
+app.use('/views', express.static(__dirname + '/views'));
+app.use('/public', express.static(__dirname + '/static'));
 
 // (임시) 데이터베이스에서 가져온 회원 정보(id, pw)
 const idFromDB = 'banana';
