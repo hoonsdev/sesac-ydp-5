@@ -1,0 +1,9 @@
+body {
+  background-color: yellowgreen;
+}
+
+.header ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

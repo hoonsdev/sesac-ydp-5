@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('./includes/head.ejs', {title: '홈'})%>
+  </head>
+  <body>
+    <%- include('./includes/header.ejs')%>
+    <h1>Hello World~</h1>
+    <div class="container">
+      <a href="/sesac">새싹</a>
+      <a href="/login">로그인</a>
+      <a href="/register">회원가입</a>
+    </div>
+    <% for (let i = 0; i < 5; i++) { %>
+    <h1>하이 <%= i %></h1>
+    <% } %>
+    <% let a = 0 %>
+    <% if (a === 0) { %> 
+      <h2>That is <%= a %></h2>
+      <% console.log('zz')%>
+    <% } else { %> 
+      <h2>That is not <%= a %></h2>
+      <% } %>
+      <!-- ejs에서 console.log는 작동은 하는데 브라우저 콘솔에는 출력 안됨. vscode 터미널에는 출력됨 -->
+  </body>
+</html>
