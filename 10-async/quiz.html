@@ -4,14 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <script defer src="./practice/3.js"></script>
   </head>
   <body>
     <h1>콜백지옥 예시</h1>
 
-    <script>
+    <!-- <script>
       const body = document.querySelector('body');
       // 1. 1초 뒤에 body 태그의 색상을 빨간색 변경
       // 2. 1초 뒤에 body 태그의 색상을 빨 -> 1초 뒤 주 .... -> 1초 뒤 파란색
+
       setTimeout(function () {
         body.style.color = 'red';
         setTimeout(function () {
@@ -27,6 +29,30 @@
           }, 1000);
         }, 1000);
       }, 1000);
-    </script>
+    </script> -->
   </body>
 </html>
+
+<!-- 
+
+  function colorChange(color, delay, callback) {
+  var body = document.body;
+  setTimeout(function () {
+    body.style.color = color;
+    if (typeof callback === 'function') {
+      callback();
+    }
+  }, delay);
+}
+
+// 각 색상별로 colorChange 함수 호출 및 콜백 활용
+colorChange('red', 1000, function () {
+  colorChange('orange', 1000, function () {
+    colorChange('yellow', 1000, function () {
+      colorChange('green', 1000, function () {
+        colorChange('blue', 1000);
+      });
+    });
+  });
+});
+-->
