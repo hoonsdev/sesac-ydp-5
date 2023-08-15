@@ -23,10 +23,13 @@ app.get('/', (req, res) => {
   res.render('index', { title: '폼 전송을 연습해보자!' });
 });
 
+// get '/getPractice' => index2.ejs 보여줌
 app.get('/getPractice', (req, res) => {
   res.render('index2');
 });
 
+// get '/getForm2' => 클라이언트에서 보낸 데이터
+// req.query 에 저장 => result2.ejs에 출력
 app.get('/getForm2', (req, res) => {
   console.log(req.query);
   res.render('result2', { title: 'get 결과 확인하기', userInfo: req.query });
