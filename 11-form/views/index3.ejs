@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>POST로 정보 받기</title>
+    <style>
+      form {
+        width: 300px;
+      }
+      form fieldset {
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="/postForm2" method="post">
+      <label for="name"
+        >이름 <input type="text" name="name" id="name" required
+      /></label>
+      <fieldset>
+        <legend>성별</legend>
+        <label for="male"
+          >남자<input
+            type="radio"
+            name="gender"
+            id="male"
+            value="남자"
+            required
+        /></label>
+        <label for="female"
+          >여자<input
+            type="radio"
+            name="gender"
+            id="female"
+            value="여자"
+            required
+        /></label>
+      </fieldset>
+      <fieldset>
+        <legend>생년월일</legend>
+        <select name="year" id="">
+          <% for (let i=1980; i<2023; i++) { %>
+          <option value="<%= i %>"><%= i %></option>
+          <% } %>
+        </select>
+        년
+
+        <select name="month" id="">
+          <% for (let i=1; i<13; i++) { %>
+          <option value="<%= i %>"><%= i %></option>
+          <% } %>
+        </select>
+        월
+
+        <select name="day" id="">
+          <% for (let i=1; i<32; i++) { %>
+          <option value="<%= i %>"><%= i %></option>
+          <% } %>
+        </select>
+        일
+      </fieldset>
+      <fieldset>
+        <legend>관심사</legend>
+        <label for="trip"
+          ><input type="checkbox" name="hobby" id="trip" value="여행" />
+          여행</label
+        >
+        <label for="fashion"
+          ><input type="checkbox" name="hobby" id="fashion" value="패션" />
+          패션</label
+        >
+        <label for="food"
+          ><input type="checkbox" name="hobby" id="food" value="음식" />
+          음식</label
+        >
+      </fieldset>
+      <fieldset>
+        <legend>선택</legend>
+        <label for="color"
+          >좋아하는 색상<input type="color" name="color" id="color" value="" />
+        </label>
+        <br />
+        <label for="number"
+          >좋아하는 숫자 <input type="number" name="number" id="number" />
+        </label>
+      </fieldset>
+      <button>회원가입</button>
+    </form>
+  </body>
+</html>

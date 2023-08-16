@@ -28,11 +28,23 @@ app.get('/getPractice', (req, res) => {
   res.render('index2');
 });
 
+// get '/postPractice' => index3.ejs 보여줌
+app.get('/postPractice', (req, res) => {
+  res.render('index3');
+});
+
 // get '/getForm2' => 클라이언트에서 보낸 데이터
 // req.query 에 저장 => result2.ejs에 출력
 app.get('/getForm2', (req, res) => {
   console.log(req.query);
   res.render('result2', { title: 'get 결과 확인하기', userInfo: req.query });
+});
+
+// get '/postForm2' => 클라이언트에서 보낸 데이터
+// req.body 에 저장 => result3.ejs에 출력
+app.post('/postForm2', (req, res) => {
+  console.log(req.body);
+  res.render('result3', { title: 'post 결과 확인하기', userInfo: req.body });
 });
 
 // GET '/getForm' => 임의의 메세지 전송
