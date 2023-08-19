@@ -5,7 +5,7 @@ const PORT = 8000;
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-app.use('/', express.static(__dirname + '/static')); // 미들웨어 등록
+app.use('/public', express.static(__dirname + '/static')); // 미들웨어 등록
 
 app.use(express.urlencoded({ extended: true })); // post 형식으로 들어오는 모든 종류 데이터 파싱
 app.use(express.json()); // JSON 파일 형식으로 데이터 주고받음.
