@@ -28,7 +28,7 @@ const buttonClick = () => {
   const { title, content, date } = globalData;
   const p = document.createElement('p');
   p.innerHTML = `제목 ${title} <br /> 본문 ${content} <br/> 날짜 ${date}`;
-  p.classList.add('text-start');
+  p.classList.add('text-start', 'mt-3');
   p.style.border = '3px solid blue';
   const resultBox = document.querySelector('div.result');
   resultBox.append(p);
