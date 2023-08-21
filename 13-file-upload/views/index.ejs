@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <!-- Axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script defer src="/public/js/fileUpload.js"></script>
   </head>
   <body>
     <h1>파일 업로드</h1>
@@ -31,5 +34,11 @@
       <input type="text" name="title2" /><br /><br />
       <button type="submit">업로드</button>
     </form>
+    <h2>동적 파일 업로드</h2>
+    <input type="file" name="dynamicUserfile" id="dynamic-file" /><br />
+    <button type="submit" onClick="fileUpload()">업로드</button>
+    <br />
+    <!-- 업로드한 이미지를 보여줄 img 태그 요소 -->
+    <img src="" alt="" width="200" />
   </body>
 </html>

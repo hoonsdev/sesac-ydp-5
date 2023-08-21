@@ -31,6 +31,8 @@ app.set('view engine', 'ejs');
 app.use('/views', express.static(__dirname + '/views'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use('/public', express.static(__dirname + '/static'));
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 app.get('/', (req, res) => {
   res.render('index');
@@ -82,6 +84,12 @@ app.post(
     res.send('여러 인풋에 각각의 파일 업로드 완료!');
   }
 );
+
+// 동적 폼 전송
+app.post('/dynamicFile', uploadDetail.single('dynamicUserfile'), (req, res) => {
+  console.log(req.file);
+  res.send(req.file);
+});
 
 app.listen(PORT, () => {
   console.log(`listening ${PORT} port!`);
