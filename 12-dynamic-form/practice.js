@@ -13,25 +13,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/axios', (req, res) => {
-  console.log(req.query);
-  if (!req.query.name) {
-    res.send('이름은 필수 값입니다!');
-  } else {
-    res.send(req.query);
-  }
+  res.send(req.query);
 });
 
 app.post('/axios', (req, res) => {
-  const realId = 'banana';
-  const realPw = '4321';
-  console.log(req.body);
-  if (!req.body.id || !req.body.pw) {
-    res.send('아이디와 비밀번호는 필수 값입니다.');
-  } else if (realId === req.body.id && realPw === req.body.pw) {
-    res.send(req.body);
-  } else {
-    res.send('아이디 또는 패스워드 오류😥');
-  }
+  res.send({ realId: 'banana', realPw: '4321', userData: req.body });
 });
 
 app.listen(PORT, () => {

@@ -23,7 +23,7 @@
 
       <fieldset>
         <legend>성별</legend>
-        <input type="radio" name="gender" id="male" value="male" checked />
+        <input type="radio" name="gender" id="male" value="male" required />
         <label for="male">남자</label>
         <input type="radio" name="gender" id="female" value="female" />
         <label for="female">여자</label>
@@ -70,9 +70,10 @@
     <hr />
     <h2>실습2. axios post 로그인</h2>
     <form name="login">
-      <label for="id">아이디 </label><input type="text" id="id" name="id" />
+      <label for="id">아이디 </label
+      ><input type="text" id="id" name="id" required />
       <label for="pw">비밀번호 </label
-      ><input type="password" id="pw" name="pw" />
+      ><input type="password" id="pw" name="pw" required />
       <button type="button" onClick="axiosPostLogin()">로그인</button>
     </form>
     <div class="result2"></div>
@@ -90,6 +91,7 @@
         });
         console.log(hobbies);
         // hobbies 배열은 form.hobby를 반복하는 각 요소에 대해 checked 속성 값이 참인 것만 새로 저장
+
         const data = {
           name: form.username.value,
           gender: form.gender.value,
@@ -99,23 +101,24 @@
           hobby: hobbies,
         };
 
-        axios({
-          method: 'get',
-          url: '/axios',
-          params: data,
-        }).then(function (response) {
-          console.log(response.data);
-          const { name, gender, birthYear, birthMonth, birthDay, hobby } =
-            response.data;
-          if (!name) {
-            resultBox.innerHTML = response.data;
-          } else {
+        if (!form.username.checkValidity()) {
+          resultBox.innerHTML = '이름은 필수 값 입니다!';
+        } else if (!form.gender[0].checkValidity()) {
+          resultBox.innerHTML = '성별을 체크해 주세요!';
+        } else {
+          axios({
+            method: 'get',
+            url: '/axios',
+            params: data,
+          }).then(function (response) {
+            const { name, gender, birthYear, birthMonth, birthDay, hobby } =
+              response.data;
             resultBox.innerHTML = `${name}님 환영합니다! 가입이 완료되었습니다.
-            ${gender} 이시네요! 생년월일은 ${birthYear}년 ${birthMonth}월 ${birthDay}이시군요!
-            ${hobby} 에 관심이 있으시네요!
-            `;
-          }
-        });
+              ${gender} 이시네요! 생년월일은 ${birthYear}년 ${birthMonth}월 ${birthDay}이시군요!
+              ${hobby} 에 관심이 있으시네요!
+              `;
+          });
+        }
       }
 
       function axiosPostLogin() {
@@ -125,21 +128,25 @@
           id: form.id.value,
           pw: form.pw.value,
         };
-
-        axios({
-          method: 'post',
-          url: '/axios',
-          data: data,
-        }).then(function (response) {
-          console.log(response);
-          if (response.data.id) {
-            resultBox.innerHTML = `${response.data.id}님! 로그인 성공`;
-            resultBox.style.color = 'blue';
-          } else {
-            resultBox.innerHTML = `${response.data}`;
-            resultBox.style.color = 'red';
-          }
-        });
+        if (!form.id.checkValidity() || !form.pw.checkValidity()) {
+          resultBox.innerHTML = '아이디와 비밀번호는 필수 값입니다.';
+        } else {
+          axios({
+            method: 'post',
+            url: '/axios',
+            data: data,
+          }).then(function (response) {
+            const { realId, realPw, userData } = response.data;
+            const { id, pw } = userData;
+            if (realId === id && realPw === pw) {
+              resultBox.innerHTML = `${id}님! 로그인 성공!`;
+              resultBox.style.color = 'blue';
+            } else {
+              resultBox.innerHTML = '아이디 또는 패스워드 오류 🥹';
+              resultBox.style.color = 'red';
+            }
+          });
+        }
       }
     </script>
   </body>
