@@ -63,7 +63,7 @@
         <label for="food">음식</label>
       </fieldset>
 
-      <button type="button" onClick="axiosGetRegister()">회원가입</button>
+      <button type="button" onClick="asyncAxiosGet()">회원가입</button>
     </form>
 
     <div class="result1"></div>
@@ -79,45 +79,44 @@
     <div class="result2"></div>
 
     <script>
-      function axiosGetRegister() {
-        const resultBox = document.querySelector('.result1');
-        const form = document.forms['register'];
-        const hobbies = [];
+      const resultBox = document.querySelector('.result1');
+      const form = document.forms['register'];
+
+      async function asyncAxiosGet() {
+        let hobbies = [];
         form.hobby.forEach((el) => {
           if (el.checked) {
-            hobbies.push(el.value); // el.value를 추가해줘야 함!
-            // 블로깅 잘 해보기!!!!
+            hobbies.push(el.value);
           }
         });
-        console.log(hobbies);
-        // hobbies 배열은 form.hobby를 반복하는 각 요소에 대해 checked 속성 값이 참인 것만 새로 저장
-
-        const data = {
-          name: form.username.value,
-          gender: form.gender.value,
-          birthYear: form.birthYear.value,
-          birthMonth: form.birthMonth.value,
-          birthDay: form.birthDay.value,
-          hobby: hobbies,
-        };
-
-        if (!form.username.checkValidity()) {
-          resultBox.innerHTML = '이름은 필수 값 입니다!';
-        } else if (!form.gender[0].checkValidity()) {
-          resultBox.innerHTML = '성별을 체크해 주세요!';
-        } else {
-          axios({
-            method: 'get',
-            url: '/axios',
-            params: data,
-          }).then(function (response) {
+        try {
+          if (!form.username.checkValidity()) {
+            resultBox.innerText = '이름은 필수값 입니다.';
+          } else if (!form.gender[1].checkValidity()) {
+            resultBox.innerText = '성별은 필수값 입니다.';
+          } else {
+            const data = {
+              name: form.username.value,
+              gender: form.gender.value,
+              birthYear: form.birthYear.value,
+              birthMonth: form.birthMonth.value,
+              birthDay: form.birthDay.value,
+              hobby: hobbies,
+            };
+            const response = await axios({
+              url: '/axios',
+              method: 'get',
+              params: data,
+            });
             const { name, gender, birthYear, birthMonth, birthDay, hobby } =
               response.data;
             resultBox.innerHTML = `${name}님 환영합니다! 가입이 완료되었습니다.
               ${gender} 이시네요! 생년월일은 ${birthYear}년 ${birthMonth}월 ${birthDay}이시군요!
               ${hobby} 에 관심이 있으시네요!
               `;
-          });
+          }
+        } catch (err) {
+          console.log('Error!', err);
         }
       }
 
