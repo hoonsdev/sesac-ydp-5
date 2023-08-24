@@ -76,7 +76,7 @@
           url: 'https://api.thecatapi.com/v1/images/search',
         });
         console.log(res);
-        const { data, status } = res; // 할당한 것만 가져오고 나머지는 안가져올 수 있음.
+        const { data, status } = res; // 할당한 것만 가져오고 나머지는 안가져올 수 있음!
         console.log(status);
         img.src = data[0].url; // img 태그의 src 속성을 open api에서 받아온 랜덤 이미지 주소로 변경
       }
