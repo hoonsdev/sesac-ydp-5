@@ -155,7 +155,7 @@ values (
 
 -- 9.
 
-update authors set first_name = 'Martinez' where author_id = 2;
+update authors set last_name = 'Martinez' where author_id = 2;
 
 -- 10.
 
