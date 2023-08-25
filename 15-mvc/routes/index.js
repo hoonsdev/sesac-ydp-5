@@ -3,7 +3,7 @@
 // 경로 선언과 관련된 내용 기술
 const express = require('express');
 const controller = require('../controller/Cmain');
-const router = express.Router();
+const app = express();
 
 // // (임시) DB로부터 받아온 댓글 목록
 // const comments = [
@@ -78,10 +78,10 @@ const router = express.Router();
 //   // res.render('comment', { comment: comments[cmtId - 1] });
 // });
 
-router.get('/', controller.main);
-router.get('/comments', controller.comments);
-router.get('/comment/:id', controller.comment);
+app.get('/', controller.main);
+app.get('/comments', controller.comments);
+app.get('/comment/:id', controller.comment);
 
 // module.exports 구문을 통해 라우터를 내보내야
 // 다른 파일(파일)에서 라우터 객체를 사용할 수 있음!
-module.exports = router;
+module.exports = app;

@@ -135,7 +135,7 @@
             url: '/axios',
             data: data,
           }).then(function (response) {
-            const { realId, realPw, userData } = response.data;
+            const { userData, realId, realPw } = response.data;
             const { id, pw } = userData;
             if (realId === id && realPw === pw) {
               resultBox.innerHTML = `${id}님! 로그인 성공!`;
