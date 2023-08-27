@@ -8,4 +8,4 @@ router.get('/axios', controller.getAxios);
 
 router.post('/axios', controller.postAxios);
 
-exports.router = router;
+module.exports = router;

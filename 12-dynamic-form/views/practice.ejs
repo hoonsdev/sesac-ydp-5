@@ -1,3 +1,4 @@
+<!-- practice.ejs -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -135,8 +136,9 @@
             url: '/axios',
             data: data,
           }).then(function (response) {
-            const { userData, realId, realPw } = response.data;
+            const { userData, info } = response.data;
             const { id, pw } = userData;
+            const { realId, realPw } = info;
             if (realId === id && realPw === pw) {
               resultBox.innerHTML = `${id}님! 로그인 성공!`;
               resultBox.style.color = 'blue';
