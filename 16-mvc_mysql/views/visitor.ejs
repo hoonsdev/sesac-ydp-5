@@ -12,7 +12,7 @@
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
-    <script defer src="/static/js/visitor_ejs.js"></script>
+    <script defer src="/static/js/visitor.js"></script>
     <style>
       body {
         background-color: rgb(231, 255, 240);
@@ -23,10 +23,12 @@
     <form name="visitor-form">
       <fieldset>
         <legend>방명록 등록</legend>
-        <input type="text" id="name" placeholder="사용자 이름" /> <br />
-        <input type="text" id="comment" placeholder="방명록" /> <br />
+        <input type="text" id="name" placeholder="사용자 이름" />
+        <br />
+        <input type="text" id="comment" placeholder="방명록" />
+        <br />
         <div id="button-group">
-          <button type="button">등록</button>
+          <button type="button" onClick="createVisitor()">등록</button>
         </div>
       </fieldset>
     </form>

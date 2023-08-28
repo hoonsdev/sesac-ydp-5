@@ -11,7 +11,14 @@ exports.getVisitors = (req, res) => {
 
   // DB 연결 후 수정된 코드
   Visitor.getVisitors((result) => {
-    console.log('controller >> ', result);
+    console.log('controller getVisitors >> ', result);
     res.render('visitor', { data: result });
+  });
+};
+
+exports.postVisitor = (req, res) => {
+  Visitor.postVisitor(req.body, (insertId) => {
+    console.log('controller postVisitor >> ', insertId);
+    res.send({ id: insertId, name: req.body.name, comment: req.body.comment });
   });
 };
