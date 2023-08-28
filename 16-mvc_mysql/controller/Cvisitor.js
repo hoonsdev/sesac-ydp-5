@@ -5,6 +5,13 @@ exports.main = (req, res) => {
 };
 
 exports.getVisitors = (req, res) => {
-  console.log(Visitor.getVisitors());
-  res.render('visitor', { data: Visitor.getVisitors() });
+  // 이전 코드
+  // console.log(Visitor.getVisitors());
+  // res.render('visitor', { data: Visitor.getVisitors() });
+
+  // DB 연결 후 수정된 코드
+  Visitor.getVisitors((result) => {
+    console.log('controller >> ', result);
+    res.render('visitor', { data: result });
+  });
 };
