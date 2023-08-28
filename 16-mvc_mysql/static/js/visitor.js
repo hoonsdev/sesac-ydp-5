@@ -18,28 +18,28 @@ const createVisitor = async () => {
     data: data,
   });
   const { id, name, comment } = res.data;
-  // const newVisitor = document.createElement('tr');
-  // newVisitor.setAttribute('id', `tr_${id}`);
   // jquery
   // $('tbody').append(newVisitor);
-  // tbody.append(newVisitor);
-  // newVisitor.innerHTML = `
-  //   <td>${id}</td>
-  //   <td>${name}</td>
-  //   <td>${comment}</td>
-  //   <td><button type="button">수정</button></td>
-  //   <td><button type="button">삭제</button></td>
-  // `;
-  const newVisitor = `
-    <tr id="tr_${id}">
-      <td>${id}</td>
-      <td>${name}</td>
-      <td>${comment}</td>
-      <td><button type="button">수정</button></td>
-      <td><button type="button" onClick="createVisitor(this, ${id})">삭제</button></td>
-    </tr>
+  const newVisitor = document.createElement('tr');
+  newVisitor.setAttribute('id', `tr_${id}`);
+  tbody.append(newVisitor);
+  newVisitor.innerHTML = `
+    <td>${id}</td>
+    <td>${name}</td>
+    <td>${comment}</td>
+    <td><button type="button">수정</button></td>
+    <td><button type="button">삭제</button></td>
   `;
-  tbody.insertAdjacentElement('beforeend', newVisitor);
+  // const newVisitor = `
+  //   <tr id="tr_${id}">
+  //     <td>${id}</td>
+  //     <td>${name}</td>
+  //     <td>${comment}</td>
+  //     <td><button type="button">수정</button></td>
+  //     <td><button type="button" onClick="createVisitor(this, ${id})">삭제</button></td>
+  //   </tr>
+  // `;
+  // tbody.insertAdjacentElement('beforeend', newVisitor);
 };
 
 const deleteVisitor = async (obj, id) => {
