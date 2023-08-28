@@ -42,3 +42,16 @@ exports.deleteVisitor = (id, cb) => {
     cb(true);
   });
 };
+
+exports.editVisitor = (data, cb) => {
+  const { id, name, comment } = data;
+  conn.query(
+    `update visitor set name='${name}', comment='${comment}' where id = '${id}'`,
+    (err, rows) => {
+      if (err) {
+        throw err;
+      }
+      cb(rows);
+    }
+  );
+};

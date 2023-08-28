@@ -30,3 +30,9 @@ exports.deleteVisitor = (req, res) => {
     res.send(result);
   });
 };
+
+exports.editVisitor = (req, res) => {
+  Visitor.editVisitor(req.body, (result) => {
+    res.send(result);
+  });
+};

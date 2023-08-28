@@ -59,3 +59,12 @@ const deleteVisitor = async (obj, id) => {
   alert('삭제성공!');
   obj.parentElement.parentElement.remove();
 };
+
+const editVisitor = async (obj, id, name, comment) => {
+  const res = await axios({
+    method: 'patch',
+    url: '/visitor',
+    data: { id: id, name: name, comment: comment },
+  });
+  console.log(res.data);
+};
