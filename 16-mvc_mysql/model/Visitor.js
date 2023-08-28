@@ -32,3 +32,13 @@ exports.postVisitor = (data, cb) => {
     }
   );
 };
+
+exports.deleteVisitor = (id, cb) => {
+  conn.query(`delete from visitor where id = '${id}'`, (err, rows) => {
+    if (err) {
+      throw err;
+    }
+    console.log('model >> ', rows);
+    cb(true);
+  });
+};
