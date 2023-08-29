@@ -10,3 +10,9 @@ exports.signup = (req, res) => {
 exports.signin = (req, res) => {
   res.render('signin');
 };
+exports.register = (req, res) => {
+  console.log(req.body);
+  User.register(req.body, (result) => {
+    res.send({ result: result });
+  });
+};
