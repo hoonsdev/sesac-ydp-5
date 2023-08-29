@@ -32,7 +32,10 @@ exports.deleteVisitor = (req, res) => {
 };
 
 exports.editVisitor = (req, res) => {
+  // 여기서 req.body에는 id, name, comment가 있다.
+  // 이 req.body와 콜백으로 라우터 처리 -> model의 Visitor 모듈을 이용
   Visitor.editVisitor(req.body, (result) => {
+    // DB에서 정상적으로 처리되면 true값이 result에 담김. 이걸 send
     res.send(result);
   });
 };

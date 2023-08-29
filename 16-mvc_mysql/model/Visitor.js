@@ -1,7 +1,7 @@
 const mysql = require('mysql');
 
 const conn = mysql.createConnection({
-  host: 'localhost',
+  host: '127.0.0.1',
   user: 'user',
   password: 'Qwer1234!@#$',
   database: 'sesac2',
@@ -44,14 +44,17 @@ exports.deleteVisitor = (id, cb) => {
 };
 
 exports.editVisitor = (data, cb) => {
+  // req.body가 data로 들어옴 -> id, name, comment 존재
   const { id, name, comment } = data;
+  // update 구문을 통해 DB 수정
   conn.query(
     `update visitor set name='${name}', comment='${comment}' where id = '${id}'`,
     (err, rows) => {
       if (err) {
         throw err;
       }
-      cb(rows);
+      // 정상적으로 처리되었다면 true 반환해서 controller에 넘겨줌.
+      cb(true);
     }
   );
 };

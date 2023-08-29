@@ -27,8 +27,8 @@ const createVisitor = async () => {
     <td>${id}</td>
     <td>${name}</td>
     <td>${comment}</td>
-    <td><button type="button">수정</button></td>
-    <td><button type="button">삭제</button></td>
+    <td><button type="button" onclick="editVisitor('${id}')">수정</button></td>
+    <td><button type="button" onClick="createVisitor(this, '${id}')">삭제</button></td>
   `;
   // const newVisitor = `
   //   <tr id="tr_${id}">
@@ -60,11 +60,56 @@ const deleteVisitor = async (obj, id) => {
   obj.parentElement.parentElement.remove();
 };
 
-const editVisitor = async (obj, id, name, comment) => {
+function editVisitor(id) {
+  // id를 기준으로 사용자 이름, 방명록 선택
+  const visitor = document.querySelector(`#tr_${id} :nth-child(2)`);
+  const comment = document.querySelector(`#tr_${id} :nth-child(3)`);
+  // input 값에 선택한 사용자 이름, 방명록 대입
+  const form = document.forms['visitor-form'];
+  form.name.value = visitor.innerText;
+  form.comment.value = comment.innerText;
+  // 수정 버튼 클릭 시 '등록' 버튼을 '변경' '취소' 버튼으로 변경
+  const div = document.querySelector('#button-group');
+  div.innerHTML = `<button type="button" onclick="editDo('${id}')">변경</button>  <button type="button" onclick="editCancel('${id}')">취소</button>`;
+}
+
+// 변경 버튼 클릭 시 내용 수정
+const editDo = async (id) => {
+  // 수정한 내용을 DB에 전달하기 위해 form 요소 접근
+  const form = document.forms['visitor-form'];
+  const data = {
+    name: form.name.value,
+    comment: form.comment.value,
+  };
+  // editVisitor 함수에서 전달한 id 값과 폼 요소의 이름, 방명록을 DB로 전달
   const res = await axios({
     method: 'patch',
     url: '/visitor',
-    data: { id: id, name: name, comment: comment },
+    data: { id: id, name: data.name, comment: data.comment },
   });
-  console.log(res.data);
+  // DB 결과로 성공하면 true 값 반환
+  if (res.data) {
+    // 똑같이 수정하고자 하는 부분의 이름과 방명록 선택
+    const visitor = document.querySelector(`#tr_${id} :nth-child(2)`);
+    const comment = document.querySelector(`#tr_${id} :nth-child(3)`);
+    // true를 send 받아서, 수정이 true이므로 input에 있는 내용을 선택한 부분에 대입
+    visitor.innerText = form.name.value;
+    comment.innerText = form.comment.value;
+    alert('수정 완료!');
+    // alert 이후 input 값 초기화
+    form.name.value = '';
+    form.comment.value = '';
+  }
+};
+
+// 취소 버튼 클릭 시 내용 복구
+const editCancel = () => {
+  // 폼 요소의 값을 다 초기화
+  const form = document.forms['visitor-form'];
+  form.name.value = '';
+  form.comment.value = '';
+  // 변경 취소 버튼을 다시 등록 버튼으로 초기화
+  const div = document.querySelector('#button-group');
+  div.innerHTML =
+    '<button type="button" onclick="createVisitor()">등록</button>';
 };
