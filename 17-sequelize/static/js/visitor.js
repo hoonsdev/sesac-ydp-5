@@ -28,7 +28,7 @@ const createVisitor = async () => {
     <td>${name}</td>
     <td>${comment}</td>
     <td><button type="button" onclick="editVisitor('${id}')">수정</button></td>
-    <td><button type="button" onClick="createVisitor(this, '${id}')">삭제</button></td>
+    <td><button type="button" onClick="deleteVisitor(this, '${id}')">삭제</button></td>
   `;
   // const newVisitor = `
   //   <tr id="tr_${id}">
