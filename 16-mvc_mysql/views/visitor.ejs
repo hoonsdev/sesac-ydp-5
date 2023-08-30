@@ -44,7 +44,7 @@
         </tr>
       </thead>
       <tbody>
-        <% for (let i = 0; i < data.length; i++) { %>
+        <% for (let i = data.length - 1; i >= 0; i--) { %>
         <tr id="tr_<%= data[i].id %>">
           <td><%= data[i].id %></td>
           <td><%= data[i].name %></td>

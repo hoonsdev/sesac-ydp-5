@@ -22,7 +22,7 @@ const createVisitor = async () => {
   // $('tbody').append(newVisitor);
   const newVisitor = document.createElement('tr');
   newVisitor.setAttribute('id', `tr_${id}`);
-  tbody.append(newVisitor);
+  tbody.prepend(newVisitor);
   newVisitor.innerHTML = `
     <td>${id}</td>
     <td>${name}</td>
@@ -60,17 +60,35 @@ const deleteVisitor = async (obj, id) => {
   obj.parentElement.parentElement.remove();
 };
 
-function editVisitor(id) {
-  // id를 기준으로 사용자 이름, 방명록 선택
-  const visitor = document.querySelector(`#tr_${id} :nth-child(2)`);
-  const comment = document.querySelector(`#tr_${id} :nth-child(3)`);
-  // input 값에 선택한 사용자 이름, 방명록 대입
-  const form = document.forms['visitor-form'];
-  form.name.value = visitor.innerText;
-  form.comment.value = comment.innerText;
-  // 수정 버튼 클릭 시 '등록' 버튼을 '변경' '취소' 버튼으로 변경
-  const div = document.querySelector('#button-group');
-  div.innerHTML = `<button type="button" onclick="editDo('${id}')">변경</button>  <button type="button" onclick="editCancel('${id}')">취소</button>`;
+async function editVisitor(id) {
+  console.log(id, '번 방명록 수정!!');
+  // TODO
+  // 1. id를 가지고 방명록 하나를 조회 (Read one) -> input에 각각 value로 저장
+  axios({
+    // GET /visitor/:id
+    method: 'get',
+    url: `/visitor/${id}`,
+
+    // GET /visitor?id=1
+    // method: 'get',
+    // url: `/visitor?id=${id}`,
+    // params: {
+    //   id: id,
+    // },
+  }).then((res) => {
+    console.log(res.data);
+    const { name, comment } = res.data;
+    const form = document.forms['visitor-form'];
+    form.name.value = name;
+    form.comment.value = comment;
+  });
+
+  // 2. [변경], [취서] 버튼 보이기
+  const btns = `
+    <button type="button" onclick=editDo(${id})>변경</button>
+    <button type="button" onclick=editCancel(${id})>취소</button>
+  `;
+  buttonGroup.innerHTML = btns;
 }
 
 // 변경 버튼 클릭 시 내용 수정
@@ -78,6 +96,7 @@ const editDo = async (id) => {
   // 수정한 내용을 DB에 전달하기 위해 form 요소 접근
   const form = document.forms['visitor-form'];
   const data = {
+    id,
     name: form.name.value,
     comment: form.comment.value,
   };
@@ -85,7 +104,7 @@ const editDo = async (id) => {
   const res = await axios({
     method: 'patch',
     url: '/visitor',
-    data: { id: id, name: data.name, comment: data.comment },
+    data: data,
   });
   // DB 결과로 성공하면 true 값 반환
   if (res.data) {
@@ -97,8 +116,7 @@ const editDo = async (id) => {
     comment.innerText = form.comment.value;
     alert('수정 완료!');
     // alert 이후 input 값 초기화
-    form.name.value = '';
-    form.comment.value = '';
+    editCancel();
   }
 };
 
@@ -109,7 +127,20 @@ const editCancel = () => {
   form.name.value = '';
   form.comment.value = '';
   // 변경 취소 버튼을 다시 등록 버튼으로 초기화
-  const div = document.querySelector('#button-group');
-  div.innerHTML =
+  buttonGroup.innerHTML =
     '<button type="button" onclick="createVisitor()">등록</button>';
 };
+
+// async function editVisitor(id) {
+// 내가 한거
+// // id를 기준으로 사용자 이름, 방명록 선택
+// const visitor = document.querySelector(`#tr_${id} :nth-child(2)`);
+// const comment = document.querySelector(`#tr_${id} :nth-child(3)`);
+// // input 값에 선택한 사용자 이름, 방명록 대입
+// const form = document.forms['visitor-form'];
+// form.name.value = visitor.innerText;
+// form.comment.value = comment.innerText;
+// // 수정 버튼 클릭 시 '등록' 버튼을 '변경' '취소' 버튼으로 변경
+// const div = document.querySelector('#button-group');
+// div.innerHTML = `<button type="button" onclick="editDo('${id}')">변경</button>  <button type="button" onclick="editCancel('${id}')">취소</button>`;
+// }

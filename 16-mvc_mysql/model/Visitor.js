@@ -43,17 +43,28 @@ exports.deleteVisitor = (id, cb) => {
   });
 };
 
+exports.getVisitor = (id, cb) => {
+  conn.query(`select * from visitor where id = '${id}'`, (err, rows) => {
+    if (err) {
+      throw err;
+    }
+    console.log(rows); // [ {} ]
+    cb(rows[0]);
+  });
+};
+
 exports.editVisitor = (data, cb) => {
   // req.body가 data로 들어옴 -> id, name, comment 존재
   const { id, name, comment } = data;
   // update 구문을 통해 DB 수정
   conn.query(
-    `update visitor set name='${name}', comment='${comment}' where id = '${id}'`,
+    `update visitor set name='${name}', comment='${comment}' where id = '${id}';`,
     (err, rows) => {
       if (err) {
         throw err;
       }
       // 정상적으로 처리되었다면 true 반환해서 controller에 넘겨줌.
+      console.log(rows);
       cb(true);
     }
   );

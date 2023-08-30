@@ -31,6 +31,15 @@ exports.deleteVisitor = (req, res) => {
   });
 };
 
+exports.getVisitor = (req, res) => {
+  // console.log(req.query); //
+  console.log(req.params); // { id: 5 }
+  const { id } = req.params;
+  Visitor.getVisitor(id, (result) => {
+    res.send(result);
+  });
+};
+
 exports.editVisitor = (req, res) => {
   // 여기서 req.body에는 id, name, comment가 있다.
   // 이 req.body와 콜백으로 라우터 처리 -> model의 Visitor 모듈을 이용
