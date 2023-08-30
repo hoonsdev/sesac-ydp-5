@@ -22,7 +22,7 @@ const createVisitor = async () => {
   // $('tbody').append(newVisitor);
   const newVisitor = document.createElement('tr');
   newVisitor.setAttribute('id', `tr_${id}`);
-  tbody.prepend(newVisitor);
+  tbody.append(newVisitor);
   newVisitor.innerHTML = `
     <td>${id}</td>
     <td>${name}</td>
@@ -108,14 +108,14 @@ const editDo = async (id) => {
   });
   // DB 결과로 성공하면 true 값 반환
   if (res.data) {
+    alert('수정 완료!');
     // 똑같이 수정하고자 하는 부분의 이름과 방명록 선택
     const visitor = document.querySelector(`#tr_${id} :nth-child(2)`);
     const comment = document.querySelector(`#tr_${id} :nth-child(3)`);
     // true를 send 받아서, 수정이 true이므로 input에 있는 내용을 선택한 부분에 대입
     visitor.innerText = form.name.value;
     comment.innerText = form.comment.value;
-    alert('수정 완료!');
-    // alert 이후 input 값 초기화
+    // update 이후 input 값 초기화
     editCancel();
   }
 };
