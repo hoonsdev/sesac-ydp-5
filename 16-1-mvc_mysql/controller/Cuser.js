@@ -10,10 +10,6 @@ exports.signup = (req, res) => {
 exports.signin = (req, res) => {
   res.render('signin');
 };
-exports.profile = (req, res) => {
-  console.log(req.body);
-  res.render('profile');
-};
 exports.register = (req, res) => {
   User.register(req.body, (result) => {
     res.send({ result });
@@ -21,11 +17,19 @@ exports.register = (req, res) => {
 };
 exports.login = (req, res) => {
   User.login(req.body, (result) => {
-    console.log('controller result: ', result);
-    if (result) {
-      return res.send({ loginSucceeded: true });
-    } else {
-      return res.send({ loginSucceeded: false });
-    }
+    res.send(result);
+  });
+};
+exports.profile = (req, res) => {
+  res.render('profile', { userData: req.body });
+};
+exports.profileEdit = (req, res) => {
+  User.profileEdit(req.body, (result) => {
+    res.send(result);
+  });
+};
+exports.profileDelete = (req, res) => {
+  User.profileDelete(req.body, (result) => {
+    res.send(result);
   });
 };

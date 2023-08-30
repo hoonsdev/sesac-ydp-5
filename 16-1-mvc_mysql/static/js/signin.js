@@ -14,7 +14,7 @@ async function login() {
   });
   const form_info = document.forms['form_info'];
   form_info.userid.value = data.id;
-  if (!res.data.loginSucceeded) {
+  if (!res.data) {
     alert('로그인 실패!');
     form_info.reset();
     form.userid.value = '';

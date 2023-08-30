@@ -35,8 +35,32 @@ exports.login = (data, cb) => {
       // 따라서 배열이 비어있는지 검사하기 위해서는 배열의 길이를 확인!
       if (rows.length === 0) {
         cb(false);
+      } else {
+        cb(rows[0]);
+      }
+    }
+  );
+};
+
+exports.profileEdit = (data, cb) => {
+  const { userid, pw, name } = data;
+  conn.query(
+    `update user set pw='${pw}', name='${name}' where userid = '${userid}'`,
+    (err, rows) => {
+      if (err) {
+        throw err;
       }
       cb(true);
     }
   );
+};
+
+exports.profileDelete = (data, cb) => {
+  const { userid } = data;
+  conn.query(`delete from user where userid = '${userid}'`, (err, rows) => {
+    if (err) {
+      throw err;
+    }
+    cb(true);
+  });
 };
