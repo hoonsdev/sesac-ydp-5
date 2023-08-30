@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
   <%- include('include/include', { title: '로그인' })%>
+  <script defer src="/static/js/signin.js"></script>
   <body>
     <h1>로그인</h1>
     <!-- 
@@ -22,11 +23,5 @@
 
     <!-- TODO: href 속성값 설정하기 -->
     <a href="/user/signup">Register</a>
-
-    <script>
-      // TODO: [Login] 버튼 클릭시 서버에 로그인 요청하기
-      // POST /user/signin
-      function login() {}
-    </script>
   </body>
 </html>
