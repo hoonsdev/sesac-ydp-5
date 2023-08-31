@@ -4,7 +4,7 @@
 async function register() {
   const form = document.forms['form_register'];
   const data = {
-    id: form.userid.value,
+    userid: form.userid.value,
     name: form.name.value,
     pw: form.pw.value,
   };

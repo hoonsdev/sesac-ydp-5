@@ -30,4 +30,4 @@ DESC user;
 -- user 테이블 데이터 조회
 SELECT * FROM user;
 
-TRUNCATE TABLE USER;
+DROP TABLE USER;
