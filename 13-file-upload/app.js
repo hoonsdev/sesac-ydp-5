@@ -28,7 +28,7 @@ const uploadDetail = multer({
 });
 
 app.set('view engine', 'ejs');
-app.use('/views', express.static(__dirname + '/views'));
+app.set('views', './views');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use('/public', express.static(__dirname + '/static'));
