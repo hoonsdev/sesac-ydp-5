@@ -14,9 +14,10 @@ sequelize
   .sync({ force: false })
   .then(() => {
     app.listen(PORT, () => {
-      console.log('Database connection succeeded!')
+      console.log('Database connection succeeded!');
       console.log(`http://localhost:${PORT}`);
     });
-  }).catch((error) => {
+  })
+  .catch((error) => {
     console.error(error);
-  });;
+  });

@@ -4,7 +4,7 @@ insert into team(name, createdAt, updatedAt) values
   ('nc', now(), now()), 
   ('lg', now(), now());
 
-insert into player(name, age, createdAt, updatedAt, team_id) values 
+insert into Player(name, age, createdAt, updatedAt, team_id) values 
   ('홍길동', 20, now(), now(), 1), 
   ('성춘향', 21, now(), now(), 3), 
   ('김첨지', 22, now(), now(), 2), 
