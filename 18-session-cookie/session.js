@@ -1,12 +1,14 @@
 const express = require('express');
 const session = require('express-session');
 const app = express();
-const PORT = 8080;
+const dotenv = require('dotenv');
+dotenv.config();
+const PORT = process.env.PORT;
 
 app.set('view engine', 'ejs');
 app.use(
   session({
-    secret: 'MySessionSecretKey',
+    secret: process.env.SESSION_SECRET_KEY,
     resave: false,
     saveUninitialized: true,
     cookie: {
