@@ -11,6 +11,8 @@ router.post('/register', controller.postRegister);
 router.get('/login', controller.getLogin);
 router.post('/login', controller.postLogin);
 
+router.get('/logout', controller.getLogout);
+
 router.get('/profile', controller.getProfile);
 router.patch('/profile/edit', controller.patchProfile);
 router.delete('/destroy', controller.deleteUser);
