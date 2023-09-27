@@ -9,6 +9,9 @@ import Test from './Test';
 import Test2 from './Test2';
 
 function App() {
+  const my_func = () => {
+    console.log('콘솔 띄우기 성공!');
+  };
   return (
     <div className="App">
       {/* FunctionComponent가 props로 넘어가서 여기의 name 속성을 Fun~~ 여기서 사용할 수 있는 것 */}
@@ -31,7 +34,10 @@ function App() {
         price="13,500원"
         type="자기계발서"
       />
-      <Console text="콘솔 띄우기 성공!" valid={true} />
+      <Console
+        text="App 컴포넌트에서 넘겨준 text props입니다."
+        valid={my_func}
+      />
     </div>
   );
 }
