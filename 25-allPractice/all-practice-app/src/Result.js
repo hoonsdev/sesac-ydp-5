@@ -1,18 +1,18 @@
-function Result({ img, bColor, color, input }) {
-  console.log(img, bColor, color, input);
+function Result(props) {
+  const { fruit, background, color, content } = props.data;
   return (
     <div style={{ display: 'block' }}>
-      <img src={img + '.png'} width={100} height={100} alt="fruit" />
+      <img src={`${fruit}.png`} width={100} height={100} alt="fruit" />
 
       <div
         style={{
           padding: '10px',
           marginTop: '10px',
-          backgroundColor: bColor,
+          backgroundColor: background,
           color: color,
         }}
       >
-        {input}
+        {content}
       </div>
     </div>
   );

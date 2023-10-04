@@ -1,25 +1,33 @@
-function Select(props) {
-  console.log('props 확인해보기: ', props);
-  const { setFruit, setBColor, setColor } = props;
+function Select({ setData }) {
+  const handleFruit = (e) => {
+    setData((data) => {
+      return { ...data, fruit: e.target.value };
+    });
+  };
+
+  const handleBackground = (e) => {
+    setData((data) => {
+      return { ...data, background: e.target.value };
+    });
+  };
+
+  const handleColor = (e) => {
+    setData((data) => {
+      return { ...data, color: e.target.value };
+    });
+  };
+
   return (
     <>
       과일 :
-      <select
-        onChange={(e) => {
-          setFruit(e.target.value);
-        }}
-      >
+      <select onChange={handleFruit}>
         <option value="apple">사과</option>
         <option value="banana">바나나</option>
         <option value="peach">복숭아</option>
         <option value="orange">오렌지</option>
       </select>
       배경색 :
-      <select
-        onChange={(e) => {
-          setBColor(e.target.value);
-        }}
-      >
+      <select onChange={handleBackground}>
         <option value="black">검정</option>
         <option value="white">하양</option>
         <option value="red">빨강</option>
@@ -31,13 +39,11 @@ function Select(props) {
         <option value="pink">분홍</option>
       </select>
       글자색 :
-      <select
-        onChange={(e) => {
-          setColor(e.target.value);
-        }}
-      >
+      <select onChange={handleColor}>
         <option value="black">검정</option>
-        <option value="white">하양</option>
+        <option value="white" selected>
+          하양
+        </option>
         <option value="red">빨강</option>
         <option value="orange">주황</option>
         <option value="yellow">노랑</option>
