@@ -13,28 +13,38 @@ export default class Practice extends Component {
     ],
   };
 
-  addData = () => {
-    const newData = this.state.data.concat({
-      id: this.state.data.length + 1,
-      writer: this.state.writer,
-      title: this.state.title,
-    });
-    if (this.state.writer && this.state.title) {
+  // Ref 생성
+  writerRef = React.createRef();
+  titleRef = React.createRef();
+
+  handleInput = () => {
+    if (this.state.writer.trim() && this.state.title.trim()) {
+      // input에 값이 있을 때만 새로운 데이터 추가
+      const newData = this.state.data.concat({
+        id: this.state.data.length + 1,
+        writer: this.state.writer,
+        title: this.state.title,
+      });
       this.setState({
         data: newData,
         // input 창 초기화
         writer: '',
         title: '',
       });
+    } else if (this.state.writer.trim()) {
+      // 하나의 input이 빈 값일 때 포커싱
+      this.titleRef.current.focus();
+    } else {
+      this.writerRef.current.focus();
     }
   };
   render() {
     return (
       <div>
         <fieldset>
-          <label htmlFor="writer">작성자 : </label>
+          {'작성자: '}
           <input
-            id="writer"
+            ref={this.writerRef}
             type="text"
             value={this.state.writer}
             onChange={(e) => {
@@ -45,13 +55,13 @@ export default class Practice extends Component {
                 return;
               }
               if (e.code === 'Enter') {
-                this.addData();
+                this.handleInput();
               }
             }}
           />
-          <label htmlFor="title">제목 : </label>
+          {'제목: '}
           <input
-            id="title"
+            ref={this.titleRef}
             type="text"
             value={this.state.title}
             onChange={(e) => {
@@ -62,11 +72,11 @@ export default class Practice extends Component {
                 return;
               }
               if (e.code === 'Enter') {
-                this.addData();
+                this.handleInput();
               }
             }}
           />
-          <button onClick={this.addData}>작성</button>
+          <button onClick={this.handleInput}>작성</button>
         </fieldset>
         <div>
           <table>
