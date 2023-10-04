@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 function App() {
   const [writerInfo, setWriter] = useState('');
   const [titleInfo, setTitle] = useState('');
+  const [searchData, setSearch] = useState();
   const [dataInfo, setData] = useState([
     {
       id: 1,
@@ -23,11 +24,12 @@ function App() {
         writer={[writerInfo, setWriter]}
         title={[titleInfo, setTitle]}
         data={[dataInfo, setData]}
+        setSearch={setSearch}
       />
       <br />
-      <SearchUser />
+      <SearchUser data={dataInfo} search={setSearch} />
       <br />
-      <List data={dataInfo} />
+      <List data={dataInfo} search={searchData} />
     </div>
   );
 }

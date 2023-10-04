@@ -1,7 +1,9 @@
 import React from 'react';
 
 export default function List(props) {
-  const dataInfo = props.data;
+  const { data, search } = props;
+
+  console.log(props);
   return (
     <div>
       <table>
@@ -12,17 +14,25 @@ export default function List(props) {
             <td>작성자</td>
           </tr>
         </thead>
-        <tbody>
-          {dataInfo.map((el) => {
-            return (
-              <tr key={el.id}>
-                <td>{el.id}</td>
-                <td>{el.writer}</td>
-                <td>{el.title}</td>
-              </tr>
-            );
-          })}
-        </tbody>
+        {typeof search !== 'string' ? (
+          <tbody>
+            {(search ? search : data).map((el) => {
+              return (
+                <tr key={el.id}>
+                  <td>{el.id}</td>
+                  <td>{el.title}</td>
+                  <td>{el.writer}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        ) : (
+          <tbody>
+            <tr>
+              <td colSpan={3}>{search}</td>
+            </tr>
+          </tbody>
+        )}
       </table>
     </div>
   );

@@ -5,6 +5,7 @@ export default function Form(props) {
   const [writerInfo, setWriter] = props.writer;
   const [titleInfo, setTitle] = props.title;
   const [dataInfo, setData] = props.data;
+  const setSearch = props.setSearch;
   // console.log(props.writer, props.title, props.data);
   const addData = () => {
     const newData = dataInfo.concat({
@@ -14,6 +15,9 @@ export default function Form(props) {
     });
     if (writerInfo && titleInfo) {
       setData(newData);
+      setWriter('');
+      setTitle('');
+      setSearch();
     } else {
       return;
     }
