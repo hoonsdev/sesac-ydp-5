@@ -1,0 +1,51 @@
+/* Common */
+p {
+  margin: 0;
+}
+
+/* .container {
+  border: 2px solid red;
+} */
+
+.listTitle {
+  color: #eee;
+  font-size: 2rem;
+  background-color: rgb(131, 174, 234);
+  padding: 10px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.loading {
+  display: block;
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+.postItem {
+  flex-direction: column;
+  background-color: rgb(227, 240, 245);
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  margin: 30px 30px;
+  padding: 20px 30px 40px 30px;
+  font-size: 1.1rem;
+}
+
+.postItem .postId {
+  color: rgb(100, 130, 222);
+  font-weight: 600;
+}
+
+.postItem .postTitle {
+  color: rgb(147, 152, 154);
+}
+
+.postItem .postBody {
+  margin-top: 10px;
+  font-weight: 500;
+}
