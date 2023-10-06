@@ -1,3 +1,4 @@
+import LifeCycleFunc from './LifeCycleFunc';
 import Practice from './Practice';
 import RefSample1 from './RefSample1';
 import RefSample2 from './RefSample2';
@@ -25,6 +26,10 @@ function App() {
 
       {/* ref 실습 */}
       <Practice />
+      <hr />
+
+      {/* lifeCycle */}
+      <LifeCycleFunc />
     </div>
   );
 }
