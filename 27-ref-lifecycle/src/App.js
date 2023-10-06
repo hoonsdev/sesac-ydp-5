@@ -1,3 +1,4 @@
+import LifeCycleClass from './LifeCycleClass';
 import LifeCycleFunc from './LifeCycleFunc';
 import Practice from './Practice';
 import RefSample1 from './RefSample1';
@@ -28,8 +29,14 @@ function App() {
       <Practice />
       <hr />
 
-      {/* lifeCycle */}
+      {/* lifecycle func */}
+      <h2>함수형 lifecycle</h2>
       <LifeCycleFunc />
+      <hr />
+
+      {/* lifecycle class */}
+      <h2>클래스형 lifecycle</h2>
+      <LifeCycleClass />
     </div>
   );
 }

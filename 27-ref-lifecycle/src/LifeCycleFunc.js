@@ -15,7 +15,7 @@ export default function LifeCycleFunc() {
     <div style={{ background: 'green' }}>
       <button onClick={changeNumber}>Plus</button>
       <button onClick={changeVisible}>On/Off</button>
-      <LifeCycleFuncChild number={number} visible={visible} />
+      {visible && <LifeCycleFuncChild number={number} visible={visible} />}
     </div>
   );
 }
