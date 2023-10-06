@@ -1,37 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './PostList.css';
+import PostItem from './PostItem';
 
-export default function PostList(props) {
-  const { fakePosts } = props;
+export default function PostList() {
   const [postState, setPostState] = useState([]);
   useEffect(() => {
     console.log('마운트!!!');
-    setTimeout(() => {
-      setPostState(fakePosts);
+    setTimeout(async () => {
+      const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
+      setPostState(res.data);
     }, 2000);
-  });
+  }, []);
 
   return (
     <div className="container">
       <div className="listTitle">📨 Post List</div>
       <div className="postList">
-        {postState.length === 0 ? (
-          <p className="loading">🚗 Loading...</p>
-        ) : (
-          postState.map((el) => {
-            return (
-              <div key={el.id} className="postItem">
-                <span className="postId">No. {el.id}</span>
-                <span className="postTitle"> - {el.title}</span>
-                <p className="postBody">
-                  {el.body.length > 150
-                    ? el.body.slice(0, 150) + '...'
-                    : el.body}
-                </p>
-              </div>
-            );
-          })
-        )}
+        <PostItem post={postState} />
       </div>
     </div>
   );
