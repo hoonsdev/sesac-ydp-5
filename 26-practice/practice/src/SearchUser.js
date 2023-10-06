@@ -12,7 +12,7 @@ export default function SearchUser(props) {
       return;
     }
     let result = dataInfo.filter((el) => {
-      return el[category] === searchKeyword;
+      return el[category].includes(searchKeyword);
     });
     console.log(result);
     if (result.length > 0) {
