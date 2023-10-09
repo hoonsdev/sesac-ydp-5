@@ -1,4 +1,5 @@
 import Input from './components/Input';
+import Login from './components/Login';
 import Todo from './components/Todo';
 
 function App() {
@@ -7,6 +8,8 @@ function App() {
       <Todo />
       <hr />
       <Input />
+      <hr />
+      <Login />
     </div>
   );
 }
