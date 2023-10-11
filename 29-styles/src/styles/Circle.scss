@@ -1,0 +1,89 @@
+$color-pink: pink;
+$color-yellow: yellow;
+$color-green: green;
+$circle-width: 100px;
+$circle-height: 100px;
+$circle-border-radius: 50%;
+
+@mixin move($animation-name) {
+  animation-name: $animation-name;
+  animation-duration: 2s;
+  animation-iteration-count: 2;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  .circle {
+    width: $circle-width;
+    height: $circle-height;
+    border-radius: $circle-border-radius;
+
+    &.pink {
+      background-color: $color-pink;
+      @include move(moveClock1);
+    }
+    &.yellow {
+      background-color: $color-yellow;
+      @include move(moveClock2);
+    }
+    &.green {
+      background-color: $color-green;
+      @include move(moveClock3);
+    }
+  }
+}
+
+@keyframes moveClock1 {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(100px, 0);
+  }
+  50% {
+    transform: translate(100px, 100px);
+  }
+  75% {
+    transform: translate(0, 100px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes moveClock2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(200px, 0);
+  }
+  50% {
+    transform: translate(200px, 200px);
+  }
+  75% {
+    transform: translate(0, 200px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes moveClock3 {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(300px, 0);
+  }
+  50% {
+    transform: translate(300px, 300px);
+  }
+  75% {
+    transform: translate(0, 300px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}

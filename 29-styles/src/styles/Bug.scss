@@ -1,0 +1,69 @@
+$color-blue: blue;
+$color-white: white;
+$color-black: black;
+$color-body1: skyblue;
+$color-body2: rgb(21, 21, 153);
+$color-body3: rgb(41, 41, 151);
+$color-body4: rgb(77, 77, 210);
+
+.total-body {
+  position: relative;
+  margin-bottom: 200px;
+
+  .body {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+
+    &.head {
+      background-color: $color-blue;
+      .eye-white {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: $color-white;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+      }
+
+      .eye-black {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: $color-black;
+        position: absolute;
+        top: 2px;
+      }
+    }
+
+    &.body2 {
+      background-color: $color-body1;
+      position: absolute;
+      top: 50px;
+      left: 80px;
+    }
+
+    &.body3 {
+      background-color: $color-body2;
+      position: absolute;
+      top: 100px;
+      left: 100px;
+    }
+
+    &.body4 {
+      background-color: $color-body3;
+      position: absolute;
+      top: 95px;
+      left: 150px;
+    }
+
+    &.body5 {
+      background-color: $color-body4;
+      position: absolute;
+      top: 100px;
+      left: 200px;
+      z-index: 10;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+@import '~include-media/dist/include-media';
+
+img {
+  width: 100px;
+  height: 100px;
+}
+
+.imgContainer {
+  display: grid;
+  grid-template-columns: repeat(5, 100px);
+
+  @include media('<768px') {
+    grid-template-columns: repeat(3, 100px);
+  }
+
+  @include media('<532px') {
+    grid-template-columns: repeat(1, 100px);
+  }
+}
