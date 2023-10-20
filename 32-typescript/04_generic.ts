@@ -75,3 +75,21 @@ const galaxy23: Phone<galaxyOption> = {
   },
 };
 console.log(galaxy23);
+
+// 실습1
+function sum1(a: number, b: number): void {
+  console.log(a + b);
+}
+sum1(5, 11);
+
+// 실습2
+function sum2(...rest: number[]): number {
+  return rest.reduce((acc, cur) => acc + cur, 0);
+}
+console.log(sum2(1, 2, 3, 4, 10));
+
+// 실습3
+function arrElement<T>(arr: T[], b: number) {
+  return arr.length < b ? false : arr[b];
+}
+console.log(arrElement<string>(['a', 'b', 'c'], 1));
