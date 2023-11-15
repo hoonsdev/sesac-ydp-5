@@ -64,6 +64,12 @@ io.on('connection', (socket) => {
     delete nickObjs[socket.id];
     updateList();
   });
+
+  // [실습4] 채팅창 메세지 전송 step1
+  // send 이벤트를 받아서
+  socket.on('send', (data) => {
+    io.emit('newMessage', { nick: data.nick, msg: data.msg });
+  });
 });
 
 server.listen(PORT, () => {

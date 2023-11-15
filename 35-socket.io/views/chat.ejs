@@ -7,6 +7,11 @@
     <!-- socket.io CDN -->
     <script src="/socket.io/socket.io.js"></script>
     <style>
+      ::-webkit-scrollbar {
+        background: transparent;
+        display: none;
+      }
+
       .chat-box.d-none {
         display: none;
       }
@@ -27,7 +32,7 @@
         width: 100%;
         height: 100%;
         max-height: 400px;
-        overflow-y: hidden;
+        overflow-y: auto;
         display: flex;
         flex-direction: column;
       }
@@ -103,6 +108,7 @@
         border: none;
         background-color: transparent;
         padding: 0 10px;
+        width: 80%;
       }
 
       .input:focus {
@@ -119,6 +125,10 @@
       .inputBtn:hover {
         background-color: #ded013;
         cursor: pointer;
+      }
+
+      select {
+        width: 50px;
       }
     </style>
   </head>
@@ -159,14 +169,13 @@
       <!-- 메세지 전송 영역 -->
       <div class="inputBox">
         <div class="selectBox">
-          <select id="nick-list"></select
-          >에게
+          <select id="nick-list"></select>
         </div>
         <input
           type="text"
           class="input"
           id="message"
-          onkeypress="if(window.event.keyCode==13){send()}"
+          onkeypress="if (window.event.keyCode==13) {send()}"
         />
         <button type="button" class="inputBtn" onclick="send()">전송</button>
       </div>
@@ -175,6 +184,7 @@
     <!-- JS -->
     <script>
       let socket = io.connect(); // 소켓 사용을 위한 객체 생성
+      let myNick;
 
       socket.on('connect', () => {
         console.log('클라이언트 연결 완료 :: ', socket.id);
@@ -239,6 +249,41 @@
           document.querySelector('#nick-list').innerHTML = options;
         });
       }
+      // [실습4] 채팅창 메세지 전송 step1
+      function send() {
+        // send 이벤트 전송 { 닉네임, 입력창내용 }
+        if (document.querySelector('#message').value) {
+          socket.emit('send', {
+            nick: myNick,
+            msg: document.querySelector('#message').value,
+          });
+          document.querySelector('#message').value = '';
+          // 스크롤바 최하단
+          chatList.scrollTop = chatList.scrollHeight;
+        }
+      }
+
+      socket.on('newMessage', (data) => {
+        const newMessage = document.createElement('div');
+        const newMessageUser = document.createElement('div');
+        const newMessageMsg = document.createElement('div');
+        newMessageMsg.classList.add('msg');
+
+        if (data.nick === myNick) {
+          newMessage.classList.add('my-chat');
+        } else {
+          newMessage.classList.add('other-chat');
+        }
+        newMessageUser.textContent = data.nick;
+        newMessageMsg.textContent = data.msg;
+        newMessage.append(newMessageUser, newMessageMsg);
+        chatList.appendChild(newMessage);
+      });
+
+      // [실습4] 채팅창 메세지 전송 Step2
+      // newMessage 이벤트를 받아서 { 닉네임, 입력창내용 }
+      // 내가 보낸 메세지: 오른쪽
+      // 다른 사람이 보낸 메세지: 왼쪽
     </script>
   </body>
 </html>
