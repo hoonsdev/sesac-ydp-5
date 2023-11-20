@@ -7,6 +7,7 @@
     <!-- socket.io CDN -->
     <script src="/socket.io/socket.io.js"></script>
     <style>
+      /* 스크롤바 안보이게 */
       ::-webkit-scrollbar {
         background: transparent;
         display: none;
@@ -37,6 +38,7 @@
         flex-direction: column;
       }
 
+      /* notice message */
       .chat-box .chat-list .notice-message {
         display: flex;
         justify-content: center;
@@ -51,8 +53,11 @@
         padding: 5px 20px;
       }
 
+      /* chat message */
       .chat-box .chat-list .my-chat,
-      .chat-box .chat-list .other-chat {
+      .chat-box .chat-list .other-chat,
+      .chat-box .chat-list .dm-chat,
+      .chat-box .chat-list .my-dm-chat {
         height: 5%;
         border-radius: 10px;
         padding: 5px 10px;
@@ -60,8 +65,10 @@
         justify-content: flex-start;
         align-items: center;
         column-gap: 10px;
+        margin-top: 10px;
       }
 
+      /* general chat */
       .chat-box .chat-list .my-chat {
         flex-direction: row-reverse;
       }
@@ -82,11 +89,30 @@
         border-radius: 10px;
       }
 
+      .chat-box .chat-list .my-dm-chat {
+        flex-direction: row-reverse;
+      }
+
+      /* dm chat */
+      .chat-box .chat-list .dm-chat .msg {
+        background-color: pink;
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 10px;
+        border-radius: 10px;
+      }
+
+      .chat-box .chat-list .my-dm-chat .msg {
+        background-color: pink;
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 10px;
+        border-radius: 10px;
+      }
+
+      /* common profile & message */
       .profile {
-        width: 25px;
-        height: 25px;
-        border-radius: 50%;
-        border: 1px solid black;
+        font-weight: 700;
       }
 
       .inputBox {
@@ -243,8 +269,10 @@
         socket.on('updateNicks', (nickObjs) => {
           let options = `<option value='all'>전체</option>`;
           for (const key in nickObjs) {
-            options =
-              options + `<option value=${key}>${nickObjs[key]}</option>`;
+            if (key !== socket.id) {
+              options =
+                options + `<option value=${key}>${nickObjs[key]}</option>`;
+            }
           }
           document.querySelector('#nick-list').innerHTML = options;
         });
@@ -254,12 +282,12 @@
         // send 이벤트 전송 { 닉네임, 입력창내용 }
         if (document.querySelector('#message').value) {
           socket.emit('send', {
+            // 전체: all, 그 외 다른 닉네임: socket.id
+            dm: document.querySelector('#nick-list').value,
             nick: myNick,
             msg: document.querySelector('#message').value,
           });
           document.querySelector('#message').value = '';
-          // 스크롤바 최하단
-          chatList.scrollTop = chatList.scrollHeight;
         }
       }
 
@@ -268,16 +296,31 @@
         const newMessageUser = document.createElement('div');
         const newMessageMsg = document.createElement('div');
         newMessageMsg.classList.add('msg');
+        newMessageUser.classList.add('profile');
 
-        if (data.nick === myNick) {
-          newMessage.classList.add('my-chat');
+        if (data.isDm) {
+          if (data.nick === myNick) {
+            newMessage.classList.add('my-dm-chat');
+          } else {
+            newMessage.classList.add('dm-chat');
+          }
         } else {
-          newMessage.classList.add('other-chat');
+          if (data.nick === myNick) {
+            newMessage.classList.add('my-chat');
+          } else {
+            newMessage.classList.add('other-chat');
+          }
         }
-        newMessageUser.textContent = data.nick;
+        newMessageUser.textContent = !data.isDm
+          ? data.nick
+          : data.dm
+          ? `DM : ${data.dm}에게`
+          : `DM : ${data.nick}으로부터`;
         newMessageMsg.textContent = data.msg;
         newMessage.append(newMessageUser, newMessageMsg);
         chatList.appendChild(newMessage);
+        // 스크롤바 최하단
+        chatList.scrollTop = chatList.scrollHeight;
       });
 
       // [실습4] 채팅창 메세지 전송 Step2

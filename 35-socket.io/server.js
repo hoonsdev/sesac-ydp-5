@@ -68,7 +68,24 @@ io.on('connection', (socket) => {
   // [실습4] 채팅창 메세지 전송 step1
   // send 이벤트를 받아서
   socket.on('send', (data) => {
-    io.emit('newMessage', { nick: data.nick, msg: data.msg });
+    // [실습5]
+    // 디엠인지 아닌지 구분
+    if (data.dm !== 'all' && data.dm !== socket.id) {
+      io.to(data.dm).emit('newMessage', {
+        nick: data.nick,
+        msg: data.msg,
+        isDm: true,
+      });
+      // 내가 보낸 메세지에도 뜨게
+      socket.emit('newMessage', {
+        nick: data.nick,
+        msg: data.msg,
+        isDm: true,
+        dm: nickObjs[data.dm],
+      });
+    } else {
+      io.emit('newMessage', { nick: data.nick, msg: data.msg, isDm: false });
+    }
   });
 });
 
